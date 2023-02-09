@@ -5,12 +5,16 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useNounsDaoProposalCount } from "../generated";
 
 import { api } from "../utils/api";
+import { BigNumber } from "ethers";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const { data } = useNounsDaoProposalCount();
 
   console.log(data);
+  if (data) {
+    console.log(parseInt(data?._hex.toString()));
+  }
   return (
     <>
       <Head>
