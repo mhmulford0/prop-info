@@ -1,0 +1,23 @@
+{
+  "name": "contract_events",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:pull": "prisma db pull",
+    "db:client-generate": "prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.10.1",
+    "ethers": "5.7.2",
+    "ioredis": "^5.3.0",
+    "prisma": "^4.9.0"
+  }
+}
