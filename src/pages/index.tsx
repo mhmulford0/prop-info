@@ -2,19 +2,18 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useNounsDaoProposalCount } from "../generated";
+import { useNounsDaoProposalCount, useNounsDaoProposals } from "../generated";
 
 import { api } from "../utils/api";
-import { BigNumber } from "ethers";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
-  const { data } = useNounsDaoProposalCount();
+  const test = api.example.getAll.useQuery();
+  const props = api.propsInfo.getAllProps.useQuery()
 
-  console.log(data);
-  if (data) {
-    console.log(parseInt(data?._hex.toString()));
-  }
+  console.log(props.data)
+
   return (
     <>
       <Head>

@@ -1,14 +1,19 @@
 import "dotenv/config";
 
 import { defineConfig, loadEnv } from "@wagmi/cli";
-import { etherscan, react } from "@wagmi/cli/plugins";
+import { actions, etherscan, react } from "@wagmi/cli/plugins";
 import { env } from "./src/env.mjs";
 import { mainnet, goerli } from "wagmi/chains";
 import { nounsDaoABI } from "./src/core/NousDAOAbi.js";
 
 export default defineConfig({
   out: "src/generated.ts",
-  plugins: [react()],
+  plugins: [
+    react(),
+    actions({
+      readContract: true,
+    }),
+  ],
 
   contracts: [
     {
