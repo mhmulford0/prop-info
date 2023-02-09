@@ -6,13 +6,28 @@ import { api } from "../utils/api";
 
 import "../styles/globals.css";
 
+import { configureChains, createClient, mainnet, WagmiConfig } from "wagmi";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+
+const { provider } = configureChains(
+  [mainnet],
+  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_KEY as string })]
+);
+
+const client = createClient({
+  autoConnect: false,
+  provider,
+});
+
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <WagmiConfig client={client}>
+        <Component {...pageProps} />
+      </WagmiConfig>
     </SessionProvider>
   );
 };
